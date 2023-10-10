@@ -15,10 +15,10 @@ class App extends Component {
             data: [
                 {name: 'Maksim Zhdanov', salary: 2800, increase: false,  rise: true, id: 1},
                 {name: 'Mariya Zhdanova', salary: 2500, increase: true, rise: false, id: 2},
-                {name: 'Lev Zhdanov', salary: 1000, increase: false, rise: false, id: 3},
+                {name: 'Lev Zhdanov', salary: 900, increase: false, rise: false, id: 3},
             ],
             term: '',
-            filter: 'rise',
+            filter: 'all',
         } 
         this.maxId = 4;
     }
@@ -83,6 +83,10 @@ class App extends Component {
         }
     }
 
+    onFilterSelect = (filter) => {
+        this.setState({filter});
+    }
+
     render () {
         const {data, term, filter} = this.state;
         const employers = this.state.data.length;
@@ -95,7 +99,7 @@ class App extends Component {
     
                 <div className='search-panel'>
                     <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
-                    <AppFilter/>                
+                    <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>                
                 </div>
     
                     <EmployersList 
